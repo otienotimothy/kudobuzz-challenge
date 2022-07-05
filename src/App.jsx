@@ -1,34 +1,40 @@
-import { useState } from "react"
-import { UploadCSV } from "./components/UploadCSV"
-import { DisplayTable } from "./components/DisplayTable"
-import { v4 } from "uuid"
+import { useState } from "react";
+import { v4 } from "uuid";
 
+// Mui Components
+import { Container } from "@mui/material";
+
+//Custom Components
+import { Navbar } from "./components/Navbar";
+import { UploadCSV } from "./components/UploadCSV";
+import { DisplayTable } from "./components/DisplayTable";
 
 function App() {
-  const [csvFile, setCsvFile] = useState();
+	const [csvFile, setCsvFile] = useState();
 	const [error, setError] = useState("");
-  const [data, setData] = useState([])
+	const [data, setData] = useState([]);
 
-  const buildCsvData = (str) => {
+	const buildCsvData = (str) => {
 		const tableHeaders = str.slice(0, str.indexOf("\n") - 1).split(",");
 		const tableRows = str.slice(str.indexOf("\n") + 1).split("\n");
 		console.log(tableHeaders);
 		console.log(tableRows);
 
-		const dataArray = tableRows.map((row) => {
+		let dataArray = tableRows.map((row) => {
 			let values = row.split(",");
 			let dataObj = tableHeaders.reduce((obj, header, i) => {
 				obj[header] = values[i];
-        obj['id'] = v4()
+				obj["id"] = v4();
 				return obj;
 			}, {});
 			return dataObj;
 		});
-    console.log(dataArray)
-    setData(dataArray)
+		dataArray.pop()
+		console.log(dataArray);
+		setData(dataArray);
 	};
 
-  const handleSubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		if (csvFile) {
@@ -45,14 +51,21 @@ function App() {
 		}
 	};
 
-  console.log(data.map(item => item.name))
+	console.log(data.map((item) => item.name));
 
-  return (
-    <>
-     <UploadCSV setFile={setCsvFile} handleSubmit={handleSubmit} error={error} />
-     <DisplayTable rows={data}/>
-    </>
-  )
+	return (
+		<>
+			<Navbar />
+			<Container maxWidth="md">
+				<UploadCSV
+					setFile={setCsvFile}
+					handleSubmit={handleSubmit}
+					error={error}
+				/>
+				<DisplayTable rows={data} />
+			</Container>
+		</>
+	);
 }
 
-export default App
+export default App;

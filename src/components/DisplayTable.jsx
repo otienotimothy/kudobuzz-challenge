@@ -1,13 +1,13 @@
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
-	{ field: "name", headerName: "Name", width: 200 },
-	{ field: "email", headerName: "Email", width: 500 },
+	{ field: "name", headerName: "Name", width: 230 },
+	{ field: "email", headerName: "Email", width: 400 },
 	{
 		field: "phone",
 		headerName: "Phone",
 		type: "number",
-		width: 200
+		width: 210
 	}
 ];
 
@@ -15,11 +15,11 @@ const columns = [
 export const DisplayTable = ({rows}) => {
     console.log(rows)
 	return (
-		<div style={{ height: 400 }}>
+		<div style={{ height: 480 }}>
 			<DataGrid
 				rows={rows}
 				columns={columns}
-				pageSize={5}
+				pageSize={10}
 				rowsPerPageOptions={[5]}
 			/>
 		</div>
