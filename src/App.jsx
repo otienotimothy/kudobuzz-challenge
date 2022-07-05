@@ -1,5 +1,8 @@
 import { useState } from "react"
 import { UploadCSV } from "./components/UploadCSV"
+import { DisplayTable } from "./components/DisplayTable"
+import { v4 } from "uuid"
+
 
 function App() {
   const [csvFile, setCsvFile] = useState();
@@ -16,6 +19,7 @@ function App() {
 			let values = row.split(",");
 			let dataObj = tableHeaders.reduce((obj, header, i) => {
 				obj[header] = values[i];
+        obj['id'] = v4()
 				return obj;
 			}, {});
 			return dataObj;
@@ -46,7 +50,7 @@ function App() {
   return (
     <>
      <UploadCSV setFile={setCsvFile} handleSubmit={handleSubmit} error={error} />
-     {data && data.map(item => <p> {item.name} </p>)}
+     <DisplayTable rows={data}/>
     </>
   )
 }
