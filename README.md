@@ -34,7 +34,7 @@
 ### Links
 
 - Project URL: [Project Repo](https://github.com/otienotimothy/kudobuzz-challenge.git)
-- Live Site URL: [CSV Challenge](https://savannah-challenge.netlify.app/)
+- Live Site URL: 
 
 ## My process
 
