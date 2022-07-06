@@ -34,7 +34,7 @@
 ### Links
 
 - Project URL: [Project Repo](https://github.com/otienotimothy/kudobuzz-challenge.git)
-- Live Site URL: [Kudobuzz Challenge](https://kudobuzz-csvfile-challenge.netlify.app/)
+- Live Site URL: [Kudobuzz Challenge](https://kudobuzz-cvsfile-challenge.netlify.app/)
 
 ## My process
 
