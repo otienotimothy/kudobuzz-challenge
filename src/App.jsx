@@ -62,7 +62,7 @@ function App() {
 					handleSubmit={handleSubmit}
 					error={error}
 				/>
-				<DisplayTable rows={data} />
+				{csvFile ? <DisplayTable rows={data} /> : <p> Add a CSV File to show data </p> }
 			</Container>
 		</>
 	);
