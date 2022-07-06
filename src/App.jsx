@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { v4 } from "uuid";
 
 // Mui Components
 import { Container } from "@mui/material";
@@ -24,14 +23,15 @@ function App() {
 			let values = row.split(",");
 			let dataObj = tableHeaders.reduce((obj, header, i) => {
 				obj[header] = values[i];
-				obj["id"] = v4();
 				return obj;
 			}, {});
 			return dataObj;
 		});
+		
 		dataArray.pop()
-		console.log(dataArray);
-		setData(dataArray);
+		let uniqueData = [...new Set(dataArray.map(item => JSON.stringify(item)))]
+		uniqueData = uniqueData.map(item => JSON.parse(item))
+		setData(uniqueData);
 	};
 
 	const handleSubmit = (e) => {
